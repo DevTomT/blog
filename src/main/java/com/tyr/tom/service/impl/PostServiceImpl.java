@@ -1,6 +1,5 @@
 package com.tyr.tom.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,10 +54,7 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public List<Post> getPostList() {
-		List<Post> postList = new ArrayList<>();
-		postRepository.findAll().forEach(postList::add);
-
-		return postList;
+		return postRepository.findAll();
 	}
 
 	@Override

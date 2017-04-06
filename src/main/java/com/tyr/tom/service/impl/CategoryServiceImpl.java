@@ -1,6 +1,5 @@
 package com.tyr.tom.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
@@ -40,10 +39,8 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public List<Category> getCategoryList() {
-		List<Category> categoryList = new ArrayList<>();
-		categoryRepository.findAll().forEach(categoryList::add);
+		return categoryRepository.findAll();
 
-		return categoryList;
 	}
 
 	@Override
@@ -58,10 +55,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public List<Category> getCategoryListOrderByCategoryName() {
-		List<Category> categoryList = new ArrayList<>();
-		categoryRepository.findAllByOrderByCategoryName().forEach(categoryList::add);
-
-		return categoryList;
+		return categoryRepository.findAllByOrderByCategoryName();
 	}
 
 	@Override
