@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl" 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:sd="http://www.thymeleaf.org/spring-data">
+
+<head th:include="_fragments :: head">
+</head>
+
+<body>
+	
+	<div class="container whole">
+		
+		<div class="container header" th:include="_fragments :: header">
+		</div>
+		
+		<div th:include="_fragments :: main-menu">
+		</div>
+		
+		<div th:include="_fragments :: authorization" style="height: 50px;">
+		</div>
+		
+		<div class="container tom_header">
+			<h3 th:text="${greetings}"></h3>
+		</div>
+		
+		<div class="tom_pagination">
+			<ul class="pagination">	
+				<li>
+					<a th:if="${posts.hasPrevious()}" th:href="@{/blog(page=${posts.getNumber()-1})}">&lt;</a>
+				</li>
+				<li th:each="i: ${#numbers.sequence(0, posts.getTotalPages())}" th:style="(${posts.getTotalPages()} <= ${i} )? 'display: none;' : ''" th:class="(${posts.getNumber()}==${i})?'active' : ''">
+					<a th:href="@{/blog(page=${i})}" th:text="${i+1}"></a>
+				</li>
+				<li>
+					<a class="active" th:if="${posts.hasNext()}" th:href="@{/blog/(page=${posts.getNumber()+1})}">&gt;</a>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="container" style="padding: 0 10px 30px;" th:each="post : ${posts}">
+			<div class="tom_content" >
+				<h3 th:text="${post.title}"></h3>
+				<p th:text="'Data utworzenia: ' + ${#dates.format(post.creationDate,'dd MMM yyyy HH:mm')}"></p>
+				<p th:text="'Kategoria: ' + ${post.category.categoryName}"></p>
+				<p style="padding: 10px 0;" th:utext="${#strings.abbreviate(post.content,400)}"></p>
+				<p>
+					<a class="btn btn-info btn-lg" th:href="@{/blog/{postId}(postId=${post.id})}">więcej...</a>
+				</p>
+			</div>	
+		</div>
+		
+		<div class="tom_pagination">
+			<ul class="pagination">	
+				<li>
+					<a th:if="${posts.hasPrevious()}" th:href="@{/blog(page=${posts.getNumber()-1})}">&lt;</a>
+				</li>
+				<li th:each="i: ${#numbers.sequence(0, posts.getTotalPages())}" th:style="(${posts.getTotalPages()} <= ${i} )? 'display: none;' : ''" th:class="(${posts.getNumber()}==${i})?'active' : ''">
+					<a th:href="@{/blog(page=${i})}" th:text="${i+1}"></a>
+				</li>
+				<li>
+					<a class="active" th:if="${posts.hasNext()}" th:href="@{/blog/(page=${posts.getNumber()+1})}">&gt;</a>
+				</li>
+			</ul>
+		</div>
+		
+		<div th:include="_fragments :: footer" class="footer text-center">
+		</div>
+	</div>
+	
+	
+ 	
+<th:block th:include="_fragments :: scripts" />
+</body>
+</html>

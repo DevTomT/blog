@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pl" 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:include="_fragments :: head">
+</head>
+
+<body>
+	<div class="container whole">
+		<div class="header" th:include="_fragments :: header">
+		</div>
+		
+		<div th:include="_fragments :: main-menu" class="container">
+		</div>
+
+		<div th:include="_fragments :: authorization"  style="height: 50px;">
+		</div>
+		
+		<div class="container tom_adminTools" sec:authorize="hasRole('ROLE_ADMIN')">
+			<a class="btn btn-info btn-lg" th:href="@{/blog/{postId}/editPost(postId=${post.id})}">Edytuj</a>
+			<button id="deleteQuestionButton" class="btn btn-info btn-lg" onclick="removeQuestion();removePostInfo();">Usuń</button>
+			<a id="delete" style="display: none;" class="btn btn-danger btn-lg" th:href="@{/blog/{postId}/deletePost(postId=${post.id})}">Usuń</a>
+			<button style="display: none;" id="notDeleteButton" class="btn btn-success btn-lg" onclick="notRemove()">Nie usuwaj</button>
+			<p id="deleteInfo" style="display: none;" class="alert alert-danger"></p>
+		</div>
+	
+		<div class="container tom_header">
+			<h3 th:text="${post.title}"></h3>
+			<p th:text="'Data utworzenia: ' + ${#dates.format(post.creationDate,'dd MMM yyyy HH:mm')}"></p>
+			<p th:text="'Kategoria: ' + ${post.category.categoryName}"></p>
+			<p style="margin-top: 50px;" th:utext="${post.content}"></p>
+		</div>
+	
+		<hr>
+		
+		<div class="container" style="padding: 40px;">
+		<h3 class="tom_header">Dodaj komentarz</h3>
+		<div class="tom_form">
+			
+  			<form th:object="${newComment}" method="post">
+  				<fieldset>
+  					<div hidden="hidden">
+       					<input name="id"  th:field="*{post}" th:value="${post.id}" />
+      				</div>
+   					<div class="form-group">
+    					<label for="content">Treść <span class="tom_required">*</span></label>
+      					<div>
+       						<textarea class="form-control" rows="3" name="content"  th:field="*{content}" required="required" ></textarea>
+       						<p class="alert alert-danger" th:if="${#fields.hasErrors('content')}" th:errors="*{content}">error</p>
+      					</div>
+   					</div>
+   					<div class="form-group">
+      					<label for="signature">Podpis <span class="tom_required">*</span></label>
+      					<div>          
+        					<input class="form-control" name="signature" th:field="*{signature}" required="required" />
+        					<p class="alert alert-danger" th:if="${#fields.hasErrors('signature')}" th:errors="*{signature}">error</p>
+      					</div>
+    				</div>
+  					<div class="form-group">        
+      					<div class="text-center">
+        					<input type="submit" class="btn btn-info btn-lg" value="Zatwierdź" />
+      					</div>
+    				</div>
+    			</fieldset>
+  			</form>
+		</div>
+		
+		<div class="tom_header">	
+			<h3>Komentarze:</h3>
+			<div class="tom_commentList" th:each="comment : ${post.commentList}">
+				<p class="comment_author" th:text="${comment.signature}"></p>
+				<p style="padding: 10px 0;" th:text="${comment.content}"></p>
+				<p th:text="'Dodano: ' + ${#dates.format(comment.creationDate,'dd MMM yyyy HH:mm')}"></p>
+				
+				<form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/blog/{postId}/deleteComment(postId=${post.id})}" method="post">
+					<input type="text" hidden="hidden" th:value="${comment.id}" name="comment" />
+					<input class="btn btn-warning" type="submit" value="Usuń" />
+				</form>
+				
+			</div>
+		</div>
+		
+		</div>
+		
+		<div th:include="_fragments :: footer" class="footer text-center">
+		</div>
+	</div>
+
+<th:block th:include="_fragments :: scripts"/>			
+</body>
+</html>

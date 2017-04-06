@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:include="_fragments :: head">
+</head>
+
+<body>
+	<div class="container whole">
+		<div class="header" th:include="_fragments :: header">
+		</div>
+		
+		<div th:include="_fragments :: main-menu" class="container">
+		</div>
+
+		<div th:include="_fragments :: authorization"  style="height: 50px;">
+		</div>
+		
+		<div class="container">
+			
+		</div>
+		
+		<div class="container tom_form">
+			<h2>Edytuj kategorię</h2>
+  			<form class="form-horizontal" th:object="${categoryToBeEdited}" method="post">
+  				<div class="col-sm-10 hidden" >
+       				<input class="form-control" name="id"  th:field="*{id}" />
+      			</div>
+    			<div class="form-group">
+      				<label class="control-label col-sm-2" for="categoryName">Nazwa kategorii <span class="tom_required">*</span></label>
+      				<div class="col-sm-10">
+       					<input class="form-control" name="categoryName" th:field="*{categoryName}" autofocus="autofocus" required="required"></input>
+      					<p class="alert alert-danger" th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}">Name Error</p>
+      				</div>
+    			</div>
+    			<div class="form-group">
+      				<label class="control-label col-sm-2" for="description">Opis </label>
+      				<div class="col-sm-10">
+     					<textarea class="form-control" rows="5" name="description" th:field="*{description}"></textarea>
+       					<p class="alert alert-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Name Error</p>
+      				</div>
+    			</div>
+  				<div class="form-group">        
+      				<div class="col-sm-offset-2 col-sm-10">
+        				<button type="submit" class="btn btn-info btn-lg">Zatwierdź</button>
+      				</div>
+    			</div>
+  			</form>
+		</div>
+		
+		<div th:include="_fragments :: footer" class="footer text-center">
+		</div>
+	</div>
+	
+<th:block th:include="_fragments :: scripts"/>
+</body>
+</html>

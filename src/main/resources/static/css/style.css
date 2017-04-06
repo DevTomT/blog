@@ -1,0 +1,155 @@
+
+body {
+	font-size: 14px;
+	background-color: rgb(240, 240, 245);
+}
+
+hr {
+	border-color: gray;
+}
+
+.container {
+	padding: 0;
+}
+
+.whole {
+	padding-bottom: 100px;
+	position: relative;
+	min-height: 100vh;
+	-webkit-box-shadow: 0px 0px 10px 5px rgba(120, 120, 120, 0.8);
+	-moz-box-shadow: 0px 0px 10px 5px rgba(120, 120, 120, 0.8);
+	box-shadow: 0px 0px 10px 5px rgba(120, 120, 120, 0.8);
+}
+
+.header {
+	padding: 20px;
+}
+
+.tom_header {
+	padding: 0 20px 20px;
+}
+
+.header a {
+	text-decoration: none;
+	color: #333333;
+}
+
+.tom_content {
+	padding: 10px 40px;
+	margin: 0 20px 20px;
+	overflow: auto;
+	background-color: white;
+	position: relative;
+	color: #333333;
+	border-left: 4px solid #29a329;
+}
+
+.tom_content:hover {
+	-webkit-box-shadow: 0px 0px 19px 10px rgba(80, 80, 80, 0.8);
+	-moz-box-shadow: 0px 0px 19px 10px rgba(80, 80, 80, 0.8);
+	box-shadow: 0px 0px 19px 10px rgba(80, 80, 80, 0.8);
+	-webkit-transition-duration: 0.4s; /*  Safari */
+	transition-duration: 0.4s;
+}
+
+.mainMenuContainer {
+	background-color: #333333;
+	padding: 0;
+	margin: 0;
+}
+
+.tom_mainMenu {
+	display: inline-block;
+	background-color: #333333;
+	font-weight: bold;
+	opacity: 0.7;
+}
+
+.tom_mainMenu:hover {
+	background-color: #29a329;
+	opacity: 1.0;
+}
+
+.tom_mainMenu a {
+	text-decoration: none;
+	color: white;
+	display: block;
+	text-align: center;
+	padding: 20px;
+	width: 120px;
+}
+
+.tom_pagination {
+	text-align: center;
+	padding: 15px 0;
+/* 	margin: 200px; */
+}
+
+.pagination > li > a:hover {
+	background-color: #88ddf9;
+}
+
+.tom_adminTools {
+	padding: 10px 20px;
+}
+
+.footer {
+	background-color: #333333;
+	height: 100px;
+	color: white;
+	padding: 20px;
+   	width: 100%;
+   	position: absolute;
+   	bottom: 0px;
+}
+
+.footer p {
+	opacity: 0.7;
+}
+
+.footer a {
+	color: white;
+	text-decoration: none;
+	opacity: 0.7;
+}
+
+.footer a:hover {
+	text-decoration: underline;
+}
+
+.tom_required {
+	color: red;
+	font-size: 1.5em;
+}
+
+.tom_categoryList, .tom_commentList {
+	padding: 10px;
+	margin: 10px 0;
+	background-color: white;
+	color: #333333;
+	border-left: 4px solid #29a329;
+}
+
+.tom_categoryList:hover {
+	background-color: #ffffcc;
+}
+
+.tom_categoryList a {
+	text-decoration: none;
+	color: black;
+	display: block;
+}
+
+.tom_categoryList a:hover {
+	text-decoration: none;
+}
+
+.tom_form {
+	padding: 0 20px;
+}
+
+.comment_author {
+	font-weight: bold;
+	font-size: larger;
+	color: #000082;
+}

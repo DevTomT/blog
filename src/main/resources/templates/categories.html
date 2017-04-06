@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl" 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+ 
+<head th:include="_fragments :: head">
+</head>
+
+<body>
+	<div class="container whole">
+		<div class="header" th:include="_fragments :: header">
+		</div>
+		
+		<div th:include="_fragments :: main-menu" class="container">
+		</div>
+
+		<div th:include="_fragments :: authorization"  style="height: 50px;">
+		</div>
+		
+		<div class="container tom_adminTools">
+			<a class="btn btn-info btn-lg" href="/blog/categories/addCategory" sec:authorize="hasRole('ROLE_ADMIN')">Dodaj kategorię</a>
+		</div>
+		
+		<div class="container tom_header">
+			<h3>Lista kategorii</h3>
+			<div class="tom_categoryList" th:each="category : ${categoryList}" >
+				<h3>
+					<a class="alert alert-info" th:href="@{/blog/categories/{categoryId}(categoryId=${category.id})}" th:text="${category.categoryName}"></a>
+				</h3>
+				<p><strong>Opis: </strong><span th:text="${category.description}"></span></p>
+				<p><strong>Wpisów: </strong><span th:text="${category.postList.size()}"></span></p>
+			</div>
+		</div>
+		
+		<div th:include="_fragments :: footer" class="footer text-center">
+		</div>
+	</div>
+	
+<th:block th:include="_fragments :: scripts"/>		
+</body>
+</html>

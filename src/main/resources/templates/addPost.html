@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl" 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:include="_fragments :: head">
+
+</head>
+
+<body>
+	<div class="container whole">
+		<div class="header" th:include="_fragments :: header">
+		</div>
+		
+		<div th:include="_fragments :: main-menu" class="container">
+		</div>
+
+		<div th:include="_fragments :: authorization"  style="height: 50px;">
+		</div>
+			
+		<div class="container tom_form">
+			<h2>Dodaj nowy wpis</h2>
+  			<form th:object="${newPost}" method="post">
+   				<div class="form-group">
+    				<label for="title">Tytuł <span class="tom_required">*</span></label>
+      				<div>
+       					<textarea class="form-control" rows="3" name="title"  th:field="*{title}" autofocus="autofocus" required="required"></textarea>
+       					<p class="alert alert-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">error</p>
+      				</div>
+   				</div>
+   				<div class="form-group">
+      				<label for="content">Treść <span class="tom_required">*</span></label>
+      				<div>          
+        				<textarea class="form-control" rows="20" name="content" th:field="*{content}" required="required"></textarea>
+        				<p class="alert alert-danger" th:if="${#fields.hasErrors('content')}" th:errors="*{content}">error</p>
+      				</div>
+    			</div>
+    			<div class="form-group">  
+    				<label for="category">Kategoria <span class="tom_required">*</span></label>
+					<select style="padding: 5px;" name="category" th:field="*{category}">
+						<option  th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.categoryName}">
+					</select>
+					<p class="alert alert-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}">error</p>
+					<p th:class="${categories.isEmpty()}? 'alert alert-info' : ''" th:style="${categories.isEmpty()}? '' : 'display: none;'">
+						Wpis musi należeć do jakiejś kategorii. Obecna liczba kategorii: 0. Utwórz co najmniej jedną kategorię aby dodać wpis.
+					</p>
+				</div>
+  				<div class="form-group">        
+      				<div class="text-center">
+        				<button type="submit" class="btn btn-info btn-lg">Zatwierdź</button>
+      				</div>
+    			</div>
+  			</form>
+		</div>
+				
+	<div th:include="_fragments :: footer" class="footer text-center">
+	</div>
+		
+	</div>
+	
+<th:block th:include="_fragments :: scripts"/>		
+</body>
+</html>

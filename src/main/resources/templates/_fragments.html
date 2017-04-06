@@ -1,0 +1,78 @@
+<head th:fragment="head">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>blog-project</title>
+	<link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/fontello/css/fontello.css" type="text/css" />	
+</head>
+
+
+
+
+<div th:fragment="header">
+	<h2>
+		<a href="#"><span style="color:  #0052cc;">Twoja</span><span style="color: #cc0000;">Nazwa</span><span style="color: #248f24;">Bloga</span><small>.com</small></a>
+	</h2> 
+</div>
+
+
+
+<div th:fragment="main-menu">
+	<div class="mainMenuContainer">
+		<div class="tom_mainMenu">
+			<a href="/blog"><i class="icon-home"></i><br/>Home</a>
+		</div>
+		<div class="tom_mainMenu">
+			<a href="/blog/aboutMe"><i class="icon-smile"></i><br/>O mnie</a>
+		</div>
+		<div class="tom_mainMenu">
+			<a href="/blog/categories"><i class="icon-doc-text"></i><br/>Kategorie</a>
+		</div>
+		<div class="tom_mainMenu">
+			<a href="/blog/archive"><i class="icon-doc-text"></i><br/>Archiwum</a>
+		</div>
+		<div class="tom_mainMenu">
+			<a href="#"><i class="icon-mail"></i><br/>Kontakt</a>
+		</div>
+		<div class="tom_mainMenu" sec:authorize="hasRole('ROLE_ADMIN')">
+			<a href="/blog/addPost" style="color: #e1e100;"><i class="icon-doc-add"></i><br/>Dodaj wpis</a>
+		</div>
+		<div class="tom_mainMenu" style="float: right;" sec:authorize="hasRole('ROLE_ANONYMOUS')">
+			<a style="color:gray;" href="/blog/login"><i class="icon-login"></i><br/>Zaloguj</a>
+		</div>
+		<div class="tom_mainMenu" style="float: right;" sec:authorize="hasRole('ROLE_ADMIN')">
+			<a style="color:gray;" th:href="@{/logout}"><i class="icon-logout"></i><br/>Wyloguj</a>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+</div>
+
+<div th:fragment="authorization">
+	<div th:if="${param.logout}" class="container text-right" style="padding: 10px;">
+		<p>Zostałeś wylogowany</p>
+	</div>
+	<div class="container text-right" style="padding: 10px;"
+		sec:authorize="hasRole('ROLE_ADMIN')">
+		<span>Witaj </span> <span sec:authentication="name">username</span>
+	</div>
+</div>
+
+
+
+
+
+<div th:fragment="footer">
+	<p>Copyright &copy; Imię Nazwisko 2017</p>
+	<a href="#">kontakt@gmail.com</a>
+</div>
+
+
+
+
+
+<th:block th:fragment="scripts">
+	<script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/webjars/jquery/3.1.1/dist/jquery.min.js"></script>	
+	<script type="text/javascript" src="/js/scripts.js"></script>
+</th:block>

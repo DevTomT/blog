@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pl" 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:include="_fragments :: head">
+</head>
+
+<body>
+	<div class="well" style="max-width: 50%; margin: auto; text-align: center;">
+		<h2>Strona której szukasz nie istnieje.</h2>
+		<p>Wróć na stronę główną.</p>
+		<a href="/blog" class="btn btn-info btn-lg">Wróć</a>
+	</div>
+<th:block th:include="_fragments :: scripts"/>	    
+</body>
+</html>

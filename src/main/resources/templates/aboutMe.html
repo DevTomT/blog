@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl" 
+xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:include="_fragments :: head">
+</head>
+
+<body>
+
+	<div class="container whole">
+
+		<div class="container header" th:include="_fragments :: header">
+		</div>
+		
+		<div th:include="_fragments :: main-menu" style="background-color: #333333;">
+		</div>
+		
+		<div th:include="_fragments :: authorization"  style="height: 50px;">
+		</div>
+		
+		<div class="container tom_header">
+			<h3>O mnie</h3>
+			<h2 style="padding: 20px 0;">Lorem ipsum dolor sit amet.</h2>
+			<img src="http://placehold.it/400x200" style="width: 400px; height: 200px; float: right; margin: 5px;" alt="obrazek" />
+			<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris quis tellus hendrerit, interdum odio ut, lobortis lacus. Integer facilisis vestibulum turpis, condimentum egestas nisi pharetra id. Sed lobortis sodales tincidunt. Integer eu ex scelerisque, elementum erat sed, condimentum ex. Fusce rutrum auctor urna, nec auctor massa dictum sed. Sed velit orci, volutpat id placerat id, sollicitudin ac erat. Aliquam ut volutpat magna. Maecenas nisl nisi, eleifend quis massa non, venenatis consectetur turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi in imperdiet nibh. Ut cursus risus cursus lectus blandit accumsan quis ac tortor. Vivamus lacinia hendrerit ante, id varius nisl finibus et. Nullam molestie nisi et elit posuere rutrum.
+			</p>
+			<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris quis tellus hendrerit, interdum odio ut, lobortis lacus. Integer facilisis vestibulum turpis, condimentum egestas nisi pharetra id. Sed lobortis sodales tincidunt. Integer eu ex scelerisque, elementum erat sed, condimentum ex. Fusce rutrum auctor urna, nec auctor massa dictum sed. Sed velit orci, volutpat id placerat id, sollicitudin ac erat. Aliquam ut volutpat magna. Maecenas nisl nisi, eleifend quis massa non, venenatis consectetur turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi in imperdiet nibh. Ut cursus risus cursus lectus blandit accumsan quis ac tortor. Vivamus lacinia hendrerit ante, id varius nisl finibus et. Nullam molestie nisi et elit posuere rutrum.
+			</p>
+			<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris quis tellus hendrerit, interdum odio ut, lobortis lacus. Integer facilisis vestibulum turpis, condimentum egestas nisi pharetra id. Sed lobortis sodales tincidunt. Integer eu ex scelerisque, elementum erat sed, condimentum ex. Fusce rutrum auctor urna, nec auctor massa dictum sed. Sed velit orci, volutpat id placerat id, sollicitudin ac erat. Aliquam ut volutpat magna. Maecenas nisl nisi, eleifend quis massa non, venenatis consectetur turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi in imperdiet nibh. Ut cursus risus cursus lectus blandit accumsan quis ac tortor. Vivamus lacinia hendrerit ante, id varius nisl finibus et. Nullam molestie nisi et elit posuere rutrum.
+			</p>
+		</div>
+		
+		<div th:include="_fragments :: footer" class="footer text-center">
+		</div>
+	</div>
+	
+	
+<th:block th:include="_fragments :: scripts"/>		
+</body>
+</html>

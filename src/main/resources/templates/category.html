@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl" 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:include="_fragments :: head">
+</head>
+
+<body>
+	<div class="container whole">
+		<div class="header" th:include="_fragments :: header">
+		</div>
+		
+		<div th:include="_fragments :: main-menu" class="container">
+		</div>
+
+		<div th:include="_fragments :: authorization"  style="height: 50px;">
+		</div>
+		
+		<div class="container tom_adminTools" sec:authorize="hasRole('ROLE_ADMIN')">
+			<a class="btn btn-info btn-lg" th:href="@{/blog/categories/{categoryId}/editCategory(categoryId=${category.id})}">Edytuj</a>
+			<button id="deleteQuestionButton" class="btn btn-info btn-lg" onclick="removeQuestion();removeCategoryInfo();">Usuń</button>
+			<a id="delete" class="btn btn-danger btn-lg" style="display: none;" th:href="@{/blog/categories/{categoryId}/deleteCategory(categoryId=${category.id})}">Usuń</a>
+			<button style="display: none;" id="notDeleteButton" class="btn btn-success btn-lg" onclick="notRemove()">Nie usuwaj</button>
+			<p id="deleteInfo" style="display: none;" class="alert alert-danger"></p>
+		</div>
+		
+		<div class="container tom_header">
+			<h3 th:text="'Archiwum kategorii: ' + ${category.categoryName}"></h3>
+			<p th:text="${category.description}"></p>
+			<hr> 
+			<h3>Wszystkie wpisy z tej kategorii:</h3>
+			<div class="tom_categoryList" th:each="post : ${category.getPostList()}">
+				<a th:href="@{/blog/{postId}(postId=${post.id})}" th:text="${#dates.format(post.creationDate,'dd MMM yyyy')} + '&nbsp;&nbsp;-&nbsp;&nbsp;' + ${post.title}"></a>
+			</div>
+		</div>
+		
+		<div th:include="_fragments :: footer" class="footer text-center">
+		</div>
+	</div>
+	
+<th:block th:include="_fragments :: scripts"/>	
+</body>
+</html>
